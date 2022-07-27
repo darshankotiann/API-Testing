@@ -9,7 +9,8 @@ app.use(express.json());
 app.use(cors());
 
 //Welcome mail
-app.post("/welcome", async (req, res) => {   //Added Async and await
+app.post("/welcome", async (req, res) => {
+  //Added Async and await
   var transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com", // hostname
     secureConnection: false, // TLS requires secureConnection to be false
@@ -23,8 +24,9 @@ app.post("/welcome", async (req, res) => {   //Added Async and await
     },
   });
 
-  try {      // transporter function does not allow any other function, so added directly with try and catch
-    await transporter.sendMail({  
+  try {
+    // transporter function does not allow any other function, so added directly with try and catch
+    await transporter.sendMail({
       from: '"Idea To Infinite" <testdarshan@outlook.com>', // sender address (who sends)
       to: `${req.body.email}`,
       subject: "Welcome To Idea To Infinite", // Subject line
@@ -501,13 +503,14 @@ app.post("/welcome", async (req, res) => {   //Added Async and await
         "</table>", // html body
     });
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    return res.status(500).json({ status: "fail" || error.toString() });
   }
-  return res.status(200).json({ success:true});
+  return res.status(200).json({ status: "success" });
 });
 
 //Subscription mail
-app.post("/subscribe", async (req, res) => {   //Added Async and await
+app.post("/subscribe", async (req, res) => {
+  //Added Async and await
   var transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com", // hostname
     secureConnection: false, // TLS requires secureConnection to be false
@@ -520,7 +523,8 @@ app.post("/subscribe", async (req, res) => {   //Added Async and await
       pass: "Dktest@123",
     },
   });
-  try { // transporter function does not allow any other function, so added directly with try and catch
+  try {
+    // transporter function does not allow any other function, so added directly with try and catch
     await transporter.sendMail({
       //25-
       from: '"Idea To Infinite" <testdarshan@outlook.com>', // sender address (who sends)
@@ -996,13 +1000,14 @@ app.post("/subscribe", async (req, res) => {   //Added Async and await
         "</table>", // html body
     });
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    return res.status(500).json({ status: "fail" || error.toString() });
   }
-  return res.status(200).json({ success:true});
+  return res.status(200).json({ status: "success" });
 });
 
 //Self mail of details
-app.post("/selfmail", async (req, res) => {   //Added Async and await
+app.post("/selfmail", async (req, res) => {
+  //Added Async and await
   var transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com", // hostname
     secureConnection: false, // TLS requires secureConnection to be false
@@ -1015,7 +1020,8 @@ app.post("/selfmail", async (req, res) => {   //Added Async and await
       pass: "Dktest@123",
     },
   });
-  try { // transporter function does not allow any other function, so added directly with try and catch
+  try {
+    // transporter function does not allow any other function, so added directly with try and catch
     await transporter.sendMail({
       from: '"Idea To Infinite" <testdarshan@outlook.com>', // sender address (who sends)
       to: `${req.body.email}`,
@@ -1038,12 +1044,13 @@ app.post("/selfmail", async (req, res) => {   //Added Async and await
         "<p>Please reply back with required details.</p>",
     });
   } catch (error) {
-    return res.status(500).json({ error: "fail" || error.toString() });
+    return res.status(500).json({ status: "fail" || error.toString() });
   }
-  return res.status(200).json({ success: true });
+  return res.status(200).json({ status: "success" });
 });
 
 const port = 3001;
 app.listen(port, () => {
+  res.
   console.log(`Server is running on port: ${port}`);
 });
