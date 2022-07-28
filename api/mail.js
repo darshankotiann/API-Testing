@@ -1,4 +1,5 @@
 const express = require("express");
+const nodemailer = require("nodemailer");
 const router = express.Router();
 router.get("/", async (req, res) => {
   try {
@@ -8,3 +9,5 @@ router.get("/", async (req, res) => {
   }
 });
 module.exports = router;
+
+//Self mail of details
